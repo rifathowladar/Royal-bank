@@ -9,6 +9,17 @@ export interface ExportMenuProps {
   onExportSuccess?: (format: 'CSV' | 'Excel' | 'PDF') => void;
 }
 
+// HTML entity encoding utility to prevent DOM XSS in print/export documents
+const escapeHtml = (val: unknown): string => {
+  if (val === null || val === undefined) return '';
+  return String(val)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+};
+
 export const ExportMenu: React.FC<ExportMenuProps> = ({
   reportTitle,
   headers,
@@ -63,16 +74,17 @@ export const ExportMenu: React.FC<ExportMenuProps> = ({
   const handleExportExcel = () => {
     setExportingFormat('Excel');
     setTimeout(() => {
-      // Excel-compatible HTML Spreadsheet XML
-      const tableHeaders = headers.map((h) => `<th>${h}</th>`).join('');
+      // Excel-compatible HTML Spreadsheet XML with escaped values
+      const tableHeaders = headers.map((h) => `<th>${escapeHtml(h)}</th>`).join('');
       const tableRows = rows
-        .map((r) => `<tr>${r.map((c) => `<td>${c}</td>`).join('')}</tr>`)
+        .map((r) => `<tr>${r.map((c) => `<td>${escapeHtml(c)}</td>`).join('')}</tr>`)
         .join('');
+      const safeTitle = escapeHtml(reportTitle);
 
       const excelContent = `
         <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">
         <head>
-          <!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>${reportTitle.slice(0, 31)}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]-->
+          <!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>${safeTitle.slice(0, 31)}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]-->
           <meta http-equiv="content-type" content="text/plain; charset=UTF-8"/>
           <style>
             table { border-collapse: collapse; width: 100%; font-family: sans-serif; }
@@ -81,7 +93,7 @@ export const ExportMenu: React.FC<ExportMenuProps> = ({
           </style>
         </head>
         <body>
-          <h2>Royal Bank International — ${reportTitle}</h2>
+          <h2>Royal Bank — ${safeTitle}</h2>
           <p>Generated on: ${new Date().toUTCString()}</p>
           <table>
             <thead><tr>${tableHeaders}</tr></thead>
@@ -100,14 +112,28 @@ export const ExportMenu: React.FC<ExportMenuProps> = ({
   const handleExportPdf = () => {
     setExportingFormat('PDF');
     setTimeout(() => {
-      // Create printable window for PDF download / print
+      // Create printable window for PDF download / print with sanitized inputs
       const printWindow = window.open('', '_blank');
       if (printWindow) {
+        const safeTitle = escapeHtml(reportTitle);
+        const safeDate = escapeHtml(new Date().toLocaleString());
+        const safeDocRef = escapeHtml(`RB-REP-${Date.now().toString().slice(-6)}`);
+        const safeHeaders = headers.map((h) => `<th>${escapeHtml(h)}</th>`).join('');
+        const safeRows = rows
+          .map(
+            (row) => `
+          <tr>
+            ${row.map((cell) => `<td>${escapeHtml(cell)}</td>`).join('')}
+          </tr>
+        `
+          )
+          .join('');
+
         printWindow.document.write(`
           <!DOCTYPE html>
           <html>
           <head>
-            <title>Royal Bank — ${reportTitle}</title>
+            <title>Royal Bank — ${safeTitle}</title>
             <style>
               body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 40px; color: #0f172a; }
               .header { display: flex; justify-content: space-between; border-bottom: 2px solid #0a192f; padding-bottom: 16px; margin-bottom: 24px; }
@@ -128,44 +154,41 @@ export const ExportMenu: React.FC<ExportMenuProps> = ({
                 <div style="font-size: 12px; color: #a37c2c; font-weight: 600;">Executive Supervisory Suite</div>
               </div>
               <div class="meta">
-                <div>Document Ref: RB-REP-${Date.now().toString().slice(-6)}</div>
-                <div>Generated: ${new Date().toLocaleString()}</div>
-                <div>Classification: Strictly Confidential</div>
+                <div>Document Ref: ${safeDocRef}</div>
+                <div>Generated: ${safeDate}</div>
+                <div>Classification: Portfolio Demo Simulation</div>
               </div>
             </div>
 
-            <h1>${reportTitle}</h1>
+            <h1>${safeTitle}</h1>
 
             <table>
               <thead>
                 <tr>
-                  ${headers.map((h) => `<th>${h}</th>`).join('')}
+                  ${safeHeaders}
                 </tr>
               </thead>
               <tbody>
-                ${rows
-                  .map(
-                    (row) => `
-                  <tr>
-                    ${row.map((cell) => `<td>${cell}</td>`).join('')}
-                  </tr>
-                `
-                  )
-                  .join('')}
+                ${safeRows}
               </tbody>
             </table>
 
             <div class="footer">
-              <span>ISO 27001 Certified Banking Information System</span>
+              <span>Royal Bank Supervisory Suite · Portfolio Demonstration</span>
               <span>Page 1 of 1</span>
             </div>
-            <script>
-              window.onload = function() { window.print(); }
-            </script>
           </body>
           </html>
         `);
         printWindow.document.close();
+        setTimeout(() => {
+          try {
+            printWindow.focus();
+            printWindow.print();
+          } catch (e) {
+            console.error('Print trigger error:', e);
+          }
+        }, 250);
       }
       setExportingFormat(null);
       setIsOpen(false);

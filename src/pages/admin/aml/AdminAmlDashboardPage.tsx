@@ -153,7 +153,7 @@ export const AdminAmlDashboardPage: React.FC = () => {
             {metrics?.sarReportsSubmitted ?? 0} Transmitted
           </div>
           <p className="text-[11px] text-slate-500 mt-1">
-            Submitted to FinCEN & FCA
+            Simulated Regulatory SAR Filings
           </p>
         </Card>
 

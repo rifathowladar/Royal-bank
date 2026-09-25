@@ -188,7 +188,12 @@ export const RegisterPage: React.FC = () => {
 
         <div className="flex items-center justify-between pb-6 border-b border-slate-100 dark:border-slate-800 mb-6">
           <BrandLogo to="/" />
-          <span className="text-xs text-slate-500 font-mono">KYC / AML Verified</span>
+          <span className="text-xs text-amber-600 dark:text-amber-400 font-mono font-medium">Demo Simulator</span>
+        </div>
+
+        {/* Demo Sandbox Notice */}
+        <div className="mb-6 p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-center text-xs text-amber-900 dark:text-amber-200">
+          <span className="font-semibold">Portfolio Simulation:</span> This registration wizard is an educational UI demonstration. Pre-filled with fictitious data. Do not enter real personal, identity, or financial information.
         </div>
 
         {/* Stepper Progress */}
@@ -612,7 +617,7 @@ export const RegisterPage: React.FC = () => {
 
         <div className="mt-6 flex items-center justify-center gap-1.5 text-[11px] text-slate-400 border-t border-slate-100 dark:border-slate-800 pt-4">
           <ShieldCheck className="w-3.5 h-3.5 text-gold-500" />
-          <span>FDIC Insured · Basel III Capital Framework</span>
+          <span>Portfolio Concept · Educational Simulation Sandbox</span>
         </div>
       </div>
     </div>

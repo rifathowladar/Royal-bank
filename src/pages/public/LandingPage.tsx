@@ -155,7 +155,7 @@ export const LandingPage: React.FC = () => {
   const faqs = [
     {
       q: 'How does Royal Bank safeguard multi-currency deposits?',
-      a: 'Deposits are held in segregated, sovereign-tiered balance sheets adhering to Basel III liquidity coverage ratios. In addition, eligible deposits enjoy statutory protection including FDIC insurance up to $250,000 in the US and FSCS up to £85,000 in the UK.',
+      a: 'This interface is a frontend portfolio demonstration. In this concept, deposits are modeled as segregated, sovereign-tiered balance sheets within a local client sandbox without real-world financial risk.',
     },
     {
       q: 'What are the qualifying criteria for Private Client & Sovereign Tiers?',
@@ -220,15 +220,15 @@ export const LandingPage: React.FC = () => {
               <div className="pt-6 border-t border-white/10 flex flex-wrap items-center gap-6 text-xs text-slate-400">
                 <div className="flex items-center gap-2">
                   <ShieldCheck className="w-4 h-4 text-gold-400" />
-                  <span>FDIC & FSCS Insured</span>
+                  <span>Interactive UI Demo</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Landmark className="w-4 h-4 text-gold-400" />
-                  <span>Basel III CET1: 18.4%</span>
+                  <span>Simulated Solvency Architecture</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Lock className="w-4 h-4 text-gold-400" />
-                  <span>256-Bit HSM Vaults</span>
+                  <span>Client-Side Local Sandbox</span>
                 </div>
               </div>
             </div>
@@ -856,7 +856,7 @@ export const LandingPage: React.FC = () => {
             <ShieldCheck className="w-7 h-7 text-royal-600 dark:text-gold-400 mb-3" />
             <h3 className="text-base font-bold text-slate-900 dark:text-white">100% Capital Solvency</h3>
             <p className="text-xs text-slate-500 mt-2 leading-relaxed">
-              Unleveraged treasury assets and unmatched Basel III Tier 1 capital ratios ensuring complete depositor safety.
+              Demonstration of multi-currency asset tiering and simulated liquidity controls modeled for educational review.
             </p>
           </div>
 

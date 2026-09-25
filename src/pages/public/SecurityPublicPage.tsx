@@ -67,12 +67,12 @@ export const SecurityPublicPage: React.FC = () => {
             </div>
           </Card>
 
-          <Card title="Statutory Protection Schemes" subtitle="FDIC & FSCS Guarantees">
+          <Card title="Reserve Architecture Model" subtitle="Simulated Asset Protection">
             <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
-              Client liquidity is insulated from institutional balance-sheet risk. Qualifying customer deposits enjoy statutory protection up to $250,000 USD (FDIC) and £85,000 GBP (FSCS).
+              Demonstrating institutional frontend design for segregated balance sheets, client-tier insulation, and multi-currency vault management in a simulated environment.
             </p>
             <div className="font-mono text-xs text-royal-600 dark:text-gold-400 font-bold">
-              Segregated Balance Sheet
+              Simulated Balance Sheet
             </div>
           </Card>
         </div>

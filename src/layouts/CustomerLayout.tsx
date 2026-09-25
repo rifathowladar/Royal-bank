@@ -166,7 +166,7 @@ export const CustomerLayout: React.FC = () => {
 
           <div className="mt-auto p-4 border-t border-slate-100 dark:border-slate-800 text-[11px] text-slate-400 space-y-1">
             <p className="font-semibold text-slate-700 dark:text-slate-300">Royal Bank Private</p>
-            <p>FDIC Insured · Charter #8912</p>
+            <p>Portfolio Demo · Simulated Sandbox</p>
           </div>
         </aside>
 

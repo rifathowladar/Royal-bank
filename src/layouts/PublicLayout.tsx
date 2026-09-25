@@ -41,6 +41,15 @@ export const PublicLayout: React.FC<PublicLayoutProps> = ({ children }) => {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col antialiased text-slate-900 dark:text-slate-100">
+      {/* Educational & Portfolio Demonstration Banner */}
+      <div className="bg-amber-500/10 dark:bg-amber-950/40 border-b border-amber-500/20 dark:border-amber-800/40 px-4 py-2 text-center text-xs text-amber-900 dark:text-amber-200 font-medium">
+        <span className="inline-flex items-center gap-1.5 font-semibold">
+          <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+          PORTFOLIO CONCEPT DEMONSTRATION:
+        </span>{' '}
+        Royal Bank is a frontend portfolio UI concept. Not a real financial institution. No real banking services are provided. Do not enter real credentials, card numbers, or personal identifying information.
+      </div>
+
       {/* Top Bar Contract: Zone 1, Zone 2, Zone 3 */}
       <header className="h-16 px-4 sm:px-8 border-b border-slate-200/80 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md sticky top-0 z-40 flex items-center justify-between">
         {/* Zone 1: Single element brand wordmark */}
@@ -199,9 +208,9 @@ export const PublicLayout: React.FC<PublicLayoutProps> = ({ children }) => {
               Global custodian for multi-currency reserves, institutional liquidity, automated cross-border settlement, and sovereign wealth custody.
             </p>
             <div className="text-[11px] text-slate-400 space-y-1">
-              <div>Chartered Institutional Identifier: RB-8912</div>
-              <div>Common Equity Tier 1 (CET1) Ratio: 18.4%</div>
-              <div>FDIC & Basel III Pillar 3 Disclosures Compliant</div>
+              <div>Royal Bank — Educational &amp; Portfolio Demonstration</div>
+              <div>Frontend Architecture Showcase · React &amp; Tailwind CSS</div>
+              <div>Simulated Client-Side Sandbox · No Real Financial Services</div>
             </div>
           </div>
 
@@ -251,7 +260,7 @@ export const PublicLayout: React.FC<PublicLayoutProps> = ({ children }) => {
         {/* Bottom copyright & regulatory line */}
         <div className="max-w-7xl mx-auto pt-8 border-t border-slate-200/80 dark:border-slate-800/80 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
           <p className="text-[11px] text-slate-500 leading-relaxed">
-            © {new Date().getFullYear()} Royal Bank International plc. Authorized by the Prudential Regulation Authority and regulated by the Financial Conduct Authority and the Prudential Regulation Authority under registration number 8912. Member FDIC.
+            © {new Date().getFullYear()} Royal Bank — Educational &amp; Portfolio Demonstration. Not a real financial institution. No real banking services are provided. Do not enter real credentials or financial information. All accounts, balances, cards, and transactions are simulated mock data.
           </p>
           <div className="flex items-center gap-4 text-[11px] text-slate-400 shrink-0">
             <Link to="/security" className="hover:underline">Privacy Policy</Link>

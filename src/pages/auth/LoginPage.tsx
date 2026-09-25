@@ -123,9 +123,14 @@ export const LoginPage: React.FC = () => {
             <h1 className="text-xl font-bold tracking-tight text-slate-900 dark:text-white">
               Client Online Banking
             </h1>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 mb-6">
+            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 mb-4">
               Access your sovereign reserve, multi-currency ledgers, and wire vaults.
             </p>
+
+            {/* Portfolio Demo Notice */}
+            <div className="mb-4 p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/20 text-center text-xs text-amber-900 dark:text-amber-200">
+              <span className="font-semibold">Demo Simulation:</span> Fictitious banking portal. Pre-filled with demo credentials. Do not enter real passwords or personal data.
+            </div>
 
             {errorMessage && (
               <Alert variant="error" className="mb-4" onDismiss={() => setErrorMessage(null)}>

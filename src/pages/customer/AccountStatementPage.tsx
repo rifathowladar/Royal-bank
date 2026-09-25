@@ -192,7 +192,7 @@ export const AccountStatementPage: React.FC = () => {
               Institutional Global Head Office • 450 Park Avenue, NY 10022
             </p>
             <p className="text-[11px] text-slate-500 font-mono">
-              SWIFT: ROBANUS33XXX • FDIC / PRA Regulated
+              SWIFT: ROBANUS33XXX • Portfolio Demo Sandbox
             </p>
           </div>
 
@@ -322,7 +322,7 @@ export const AccountStatementPage: React.FC = () => {
           <div className="flex items-center gap-2">
             <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
             <span>
-              End-of-period audited snapshot. In accordance with Basel III capital and deposit insurance guidelines.
+              End-of-period simulated snapshot. Generated for portfolio demonstration &amp; UI evaluation.
             </span>
           </div>
           <div className="font-mono text-slate-400">Page 1 of 1 • System Generated</div>

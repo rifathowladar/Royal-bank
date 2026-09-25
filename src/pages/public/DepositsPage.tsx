@@ -85,7 +85,7 @@ export const DepositsPage: React.FC = () => {
                     </td>
                     <td className="py-4 px-6 text-slate-700 dark:text-slate-300 font-sans flex items-center gap-1.5">
                       <ShieldCheck className="w-3.5 h-3.5 text-gold-500" />
-                      <span>100% FDIC & FSCS</span>
+                      <span>Simulated Reserve Tier</span>
                     </td>
                     <td className="py-4 px-6 text-right">
                       <Button

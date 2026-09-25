@@ -22,8 +22,8 @@ export const FaqPage: React.FC = () => {
     },
     {
       category: 'SECURITY',
-      q: 'How are my customer deposits insured against institutional insolvency?',
-      a: 'Eligible customer funds are held in segregated reserve structures protected by national statutory deposit insurance frameworks, including the US FDIC (up to $250,000 per depositor) and the UK FSCS (up to £85,000 per depositor). Royal Bank also maintains an industry-leading CET1 solvency ratio of 18.4%.',
+      q: 'How are customer balances managed in this banking system?',
+      a: 'This interface is an educational portfolio demonstration. All balances, accounts, and transactions are simulated in local client storage and memory. No real currency is accepted, held, or transferred.',
     },
     {
       category: 'SECURITY',

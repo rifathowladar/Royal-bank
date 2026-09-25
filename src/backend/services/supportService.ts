@@ -113,8 +113,8 @@ const defaultFaqs: FAQItem[] = [
   {
     id: 'faq-04',
     category: 'Deposits & Yield',
-    question: 'Are high-yield Fixed Term and DPS deposits FDIC / Sovereign insured?',
-    answer: 'Yes, deposits with Royal Bank are backed by the highest tier statutory insurance regimes up to standard legal caps, with institutional excess depositor insurance available through our Syndicate Sweep facility.',
+    question: 'How are Fixed Term and DPS deposit balances modeled in this system?',
+    answer: 'All deposit schemes within Royal Bank are simulated records stored in client-side storage for interface evaluation and user experience demonstration purposes only.',
     helpfulCount: 76,
   },
   {

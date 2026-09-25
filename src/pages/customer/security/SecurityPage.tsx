@@ -13,6 +13,7 @@ import { Button } from '../../../components/ui/Button.tsx';
 import { Input } from '../../../components/ui/Input.tsx';
 import { LoadingState } from '../../../components/ui/LoadingState.tsx';
 import { Modal } from '../../../components/ui/Modal.tsx';
+import { QRCodeView } from '../../../components/common/QRCodeView.tsx';
 import {
   Shield,
   ShieldCheck,
@@ -915,12 +916,13 @@ export const SecurityPage: React.FC = () => {
               Scan this QR code with Google Authenticator, 1Password, or Authy.
             </p>
 
-            {/* QR Code visual */}
+            {/* QR Code visual - generated completely client-side via local SVG */}
             <div className="bg-white p-4 rounded-xl inline-block shadow-md border border-gray-200 mb-4">
-              <img
-                src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=otpauth://totp/RoyalBank:AlexanderSterling?secret=JBSWY3DPEHPK3PXP&issuer=RoyalBank"
-                alt="Authenticator QR Code"
-                className="w-44 h-44 mx-auto"
+              <QRCodeView
+                value="otpauth://totp/RoyalBank:AlexanderSterling?secret=JBSWY3DPEHPK3PXP&issuer=RoyalBank"
+                size={176}
+                includeLogo={false}
+                className="mx-auto"
               />
             </div>
 
