@@ -360,19 +360,19 @@ export const ProfilePage: React.FC = () => {
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
-                <div className="p-3.5 rounded-lg bg-gray-50 dark:bg-royal-900/60 border border-gray-100 dark:border-royal-900">
+                <div className="p-3.5 rounded-lg bg-gray-50 dark:bg-navy-900/60 border border-gray-100 dark:border-navy-800">
                   <span className="text-gray-500 dark:text-gray-400 text-xs block">Full Legal Name</span>
                   <span className="font-medium text-gray-900 dark:text-gray-100">{profile.title} {profile.firstName} {profile.lastName}</span>
                 </div>
-                <div className="p-3.5 rounded-lg bg-gray-50 dark:bg-royal-900/60 border border-gray-100 dark:border-royal-900">
+                <div className="p-3.5 rounded-lg bg-gray-50 dark:bg-navy-900/60 border border-gray-100 dark:border-navy-800">
                   <span className="text-gray-500 dark:text-gray-400 text-xs block">Date of Birth</span>
                   <span className="font-medium text-gray-900 dark:text-gray-100">{profile.dateOfBirth} ({profile.gender})</span>
                 </div>
-                <div className="p-3.5 rounded-lg bg-gray-50 dark:bg-royal-900/60 border border-gray-100 dark:border-royal-900">
+                <div className="p-3.5 rounded-lg bg-gray-50 dark:bg-navy-900/60 border border-gray-100 dark:border-navy-800">
                   <span className="text-gray-500 dark:text-gray-400 text-xs block">Nationality & Residency</span>
                   <span className="font-medium text-gray-900 dark:text-gray-100">{profile.nationality} • {profile.taxResidency}</span>
                 </div>
-                <div className="p-3.5 rounded-lg bg-gray-50 dark:bg-royal-900/60 border border-gray-100 dark:border-royal-900">
+                <div className="p-3.5 rounded-lg bg-gray-50 dark:bg-navy-900/60 border border-gray-100 dark:border-navy-800">
                   <span className="text-gray-500 dark:text-gray-400 text-xs block">National ID / Passport</span>
                   <span className="font-mono font-medium text-gray-900 dark:text-gray-100">{profile.nationalIdMasked}</span>
                 </div>
@@ -394,15 +394,15 @@ export const ProfilePage: React.FC = () => {
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
-                <div className="p-3.5 rounded-lg bg-gray-50 dark:bg-royal-900/60 border border-gray-100 dark:border-royal-900">
+                <div className="p-3.5 rounded-lg bg-gray-50 dark:bg-navy-900/60 border border-gray-100 dark:border-navy-800">
                   <span className="text-gray-500 dark:text-gray-400 text-xs block">Primary Phone</span>
                   <span className="font-medium text-gray-900 dark:text-gray-100">{profile.phone}</span>
                 </div>
-                <div className="p-3.5 rounded-lg bg-gray-50 dark:bg-royal-900/60 border border-gray-100 dark:border-royal-900">
+                <div className="p-3.5 rounded-lg bg-gray-50 dark:bg-navy-900/60 border border-gray-100 dark:border-navy-800">
                   <span className="text-gray-500 dark:text-gray-400 text-xs block">Official Email</span>
                   <span className="font-medium text-gray-900 dark:text-gray-100">{profile.email}</span>
                 </div>
-                <div className="sm:col-span-2 p-3.5 rounded-lg bg-gray-50 dark:bg-royal-900/60 border border-gray-100 dark:border-royal-900">
+                <div className="sm:col-span-2 p-3.5 rounded-lg bg-gray-50 dark:bg-navy-900/60 border border-gray-100 dark:border-navy-800">
                   <span className="text-gray-500 dark:text-gray-400 text-xs block">Residential Address</span>
                   <span className="font-medium text-gray-900 dark:text-gray-100">
                     {profile.residentialAddress.line1}, {profile.residentialAddress.line2 ? `${profile.residentialAddress.line2}, ` : ''}
@@ -427,11 +427,11 @@ export const ProfilePage: React.FC = () => {
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
-                <div className="p-3.5 rounded-lg bg-gray-50 dark:bg-royal-900/60 border border-gray-100 dark:border-royal-900">
+                <div className="p-3.5 rounded-lg bg-gray-50 dark:bg-navy-900/60 border border-gray-100 dark:border-navy-800">
                   <span className="text-gray-500 dark:text-gray-400 text-xs block">Designation & Company</span>
                   <span className="font-medium text-gray-900 dark:text-gray-100">{profile.employment.designation} at {profile.employment.companyName}</span>
                 </div>
-                <div className="p-3.5 rounded-lg bg-gray-50 dark:bg-royal-900/60 border border-gray-100 dark:border-royal-900">
+                <div className="p-3.5 rounded-lg bg-gray-50 dark:bg-navy-900/60 border border-gray-100 dark:border-navy-800">
                   <span className="text-gray-500 dark:text-gray-400 text-xs block">Annual Declared Income</span>
                   <span className="font-medium text-emerald-600 dark:text-emerald-400 font-mono">{formatCurrency(profile.employment.annualIncome)}</span>
                 </div>
@@ -453,7 +453,7 @@ export const ProfilePage: React.FC = () => {
               <p className="text-base font-bold text-gray-900 dark:text-white">{profile.nominee.fullName}</p>
               <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Relationship: <strong>{profile.nominee.relationship}</strong></p>
 
-              <div className="mt-4 pt-3 border-t border-gray-100 dark:border-royal-900 text-xs space-y-2 text-gray-600 dark:text-gray-300">
+              <div className="mt-4 pt-3 border-t border-gray-100 dark:border-navy-800 text-xs space-y-2 text-gray-600 dark:text-gray-300">
                 <div className="flex justify-between">
                   <span>Contact:</span>
                   <span className="font-mono">{profile.nominee.phone}</span>
@@ -504,7 +504,7 @@ export const ProfilePage: React.FC = () => {
       {/* Tab: Personal Information */}
       {activeTab === 'personal' && (
         <Card className="p-6 md:p-8">
-          <div className="mb-6 pb-4 border-b border-gray-100 dark:border-royal-900">
+          <div className="mb-6 pb-4 border-b border-gray-100 dark:border-navy-800">
             <h2 className="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
               <User className="w-5 h-5 text-royal-600 dark:text-gold-400" />
               Personal & Legal Information
@@ -523,7 +523,7 @@ export const ProfilePage: React.FC = () => {
                 <select
                   value={personalForm.title || ''}
                   onChange={(e) => setPersonalForm({ ...personalForm, title: e.target.value })}
-                  className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-gray-300 dark:border-slate-700 dark:bg-slate-900/60 text-gray-900 dark:text-white"
+                  className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-gray-300 dark:border-navy-700 bg-white dark:bg-navy-900 text-gray-900 dark:text-white"
                 >
                   <option value="Mr.">Mr.</option>
                   <option value="Mrs.">Mrs.</option>
@@ -576,7 +576,7 @@ export const ProfilePage: React.FC = () => {
                 <select
                   value={personalForm.gender || 'Male'}
                   onChange={(e) => setPersonalForm({ ...personalForm, gender: e.target.value as any })}
-                  className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-gray-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-gray-900 dark:text-white"
+                  className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-gray-300 dark:border-navy-700 bg-white dark:bg-navy-900 text-gray-900 dark:text-white"
                 >
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
@@ -592,7 +592,7 @@ export const ProfilePage: React.FC = () => {
                 <select
                   value={personalForm.maritalStatus || 'Married'}
                   onChange={(e) => setPersonalForm({ ...personalForm, maritalStatus: e.target.value as any })}
-                  className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-gray-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-gray-900 dark:text-white"
+                  className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-gray-300 dark:border-navy-700 bg-white dark:bg-navy-900 text-gray-900 dark:text-white"
                 >
                   <option value="Single">Single</option>
                   <option value="Married">Married</option>
@@ -658,7 +658,7 @@ export const ProfilePage: React.FC = () => {
               </div>
             </div>
 
-            <div className="flex justify-end gap-3 pt-4 border-t border-gray-100 dark:border-royal-900">
+            <div className="flex justify-end gap-3 pt-4 border-t border-gray-100 dark:border-navy-800">
               <Button type="submit" variant="primary" disabled={isSaving}>
                 <Save className="w-4 h-4 mr-1.5" />
                 {isSaving ? 'Saving...' : 'Save Personal Details'}
@@ -671,7 +671,7 @@ export const ProfilePage: React.FC = () => {
       {/* Tab: Contact & Addresses */}
       {activeTab === 'contact' && (
         <Card className="p-6 md:p-8">
-          <div className="mb-6 pb-4 border-b border-gray-100 dark:border-royal-900">
+          <div className="mb-6 pb-4 border-b border-gray-100 dark:border-navy-800">
             <h2 className="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
               <Phone className="w-5 h-5 text-royal-600 dark:text-gold-400" />
               Contact Numbers & Addresses
@@ -735,7 +735,7 @@ export const ProfilePage: React.FC = () => {
               </div>
             </div>
 
-            <div className="pt-4 border-t border-gray-100 dark:border-royal-900">
+            <div className="pt-4 border-t border-gray-100 dark:border-navy-800">
               <h3 className="text-sm font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-royal-600 dark:text-gold-400" />
                 Residential Address
@@ -824,7 +824,7 @@ export const ProfilePage: React.FC = () => {
               </div>
             </div>
 
-            <div className="flex justify-end gap-3 pt-4 border-t border-gray-100 dark:border-royal-900">
+            <div className="flex justify-end gap-3 pt-4 border-t border-gray-100 dark:border-navy-800">
               <Button type="submit" variant="primary" disabled={isSaving}>
                 <Save className="w-4 h-4 mr-1.5" />
                 {isSaving ? 'Saving...' : 'Save Contact Information'}
@@ -837,7 +837,7 @@ export const ProfilePage: React.FC = () => {
       {/* Tab: Nominee / Beneficiary */}
       {activeTab === 'nominee' && (
         <Card className="p-6 md:p-8">
-          <div className="mb-6 pb-4 border-b border-gray-100 dark:border-royal-900">
+          <div className="mb-6 pb-4 border-b border-gray-100 dark:border-navy-800">
             <h2 className="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
               <Users className="w-5 h-5 text-royal-600 dark:text-gold-400" />
               Account Nominee & Beneficiary Nomination
@@ -867,7 +867,7 @@ export const ProfilePage: React.FC = () => {
                 <select
                   value={nomineeForm.relationship}
                   onChange={(e) => setNomineeForm({ ...nomineeForm, relationship: e.target.value as any })}
-                  className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-gray-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-gray-900 dark:text-white"
+                  className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-gray-300 dark:border-navy-700 bg-white dark:bg-navy-900 text-gray-900 dark:text-white"
                 >
                   <option value="Spouse">Spouse</option>
                   <option value="Child">Child</option>
@@ -933,7 +933,7 @@ export const ProfilePage: React.FC = () => {
                 <select
                   value={nomineeForm.identityType}
                   onChange={(e) => setNomineeForm({ ...nomineeForm, identityType: e.target.value as any })}
-                  className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-gray-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-gray-900 dark:text-white"
+                  className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-gray-300 dark:border-navy-700 bg-white dark:bg-navy-900 text-gray-900 dark:text-white"
                 >
                   <option value="Passport">Passport</option>
                   <option value="NID">National ID</option>
@@ -965,7 +965,7 @@ export const ProfilePage: React.FC = () => {
               </div>
             </div>
 
-            <div className="flex justify-end gap-3 pt-4 border-t border-gray-100 dark:border-royal-900">
+            <div className="flex justify-end gap-3 pt-4 border-t border-gray-100 dark:border-navy-800">
               <Button type="submit" variant="primary" disabled={isSaving}>
                 <Save className="w-4 h-4 mr-1.5" />
                 {isSaving ? 'Saving...' : 'Save Nominee Beneficiary'}
@@ -978,7 +978,7 @@ export const ProfilePage: React.FC = () => {
       {/* Tab: Employment & Income */}
       {activeTab === 'employment' && (
         <Card className="p-6 md:p-8">
-          <div className="mb-6 pb-4 border-b border-gray-100 dark:border-royal-900">
+          <div className="mb-6 pb-4 border-b border-gray-100 dark:border-navy-800">
             <h2 className="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
               <Briefcase className="w-5 h-5 text-royal-600 dark:text-gold-400" />
               Employment, Source of Funds & Tax Information
@@ -997,7 +997,7 @@ export const ProfilePage: React.FC = () => {
                 <select
                   value={employmentForm.employmentStatus}
                   onChange={(e) => setEmploymentForm({ ...employmentForm, employmentStatus: e.target.value as any })}
-                  className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-gray-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-gray-900 dark:text-white"
+                  className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-gray-300 dark:border-navy-700 bg-white dark:bg-navy-900 text-gray-900 dark:text-white"
                 >
                   <option value="Employed">Salaried Executive / Employee</option>
                   <option value="Self-Employed">Self-Employed Professional</option>
@@ -1124,7 +1124,7 @@ export const ProfilePage: React.FC = () => {
               </div>
             </div>
 
-            <div className="flex justify-end gap-3 pt-4 border-t border-gray-100 dark:border-royal-900">
+            <div className="flex justify-end gap-3 pt-4 border-t border-gray-100 dark:border-navy-800">
               <Button type="submit" variant="primary" disabled={isSaving}>
                 <Save className="w-4 h-4 mr-1.5" />
                 {isSaving ? 'Saving...' : 'Save Employment Profile'}

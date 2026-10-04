@@ -7,7 +7,6 @@ import { Card } from '../../../components/ui/Card.tsx';
 import { Button } from '../../../components/ui/Button.tsx';
 import { Input } from '../../../components/ui/Input.tsx';
 import { LoadingState } from '../../../components/ui/LoadingState.tsx';
-import { Modal } from '../../../components/ui/Modal.tsx';
 import {
   Bell,
   CheckCircle2,
@@ -36,8 +35,6 @@ export const NotificationsPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [unreadOnly, setUnreadOnly] = useState(false);
   const [unreadCount, setUnreadCount] = useState({ total: 0, byCategory: {} as Record<NotificationCategory, number> });
-  const [clearModalOpen, setClearModalOpen] = useState(false);
-  const [isClearing, setIsClearing] = useState(false);
 
   const loadData = async () => {
     try {
@@ -99,17 +96,14 @@ export const NotificationsPage: React.FC = () => {
   };
 
   const handleClearAll = async () => {
+    if (!window.confirm('Clear all notifications from history?')) return;
     try {
-      setIsClearing(true);
       await notificationService.clearAllNotifications(user?.id || 'cust-001');
       setNotifications([]);
       setUnreadCount({ total: 0, byCategory: {} as any });
-      setClearModalOpen(false);
       success('Notification log cleared');
     } catch (err: any) {
       toastError(err.message || 'Failed to clear');
-    } finally {
-      setIsClearing(false);
     }
   };
 
@@ -186,7 +180,7 @@ export const NotificationsPage: React.FC = () => {
             <Button
               variant="outline"
               size="sm"
-              onClick={() => setClearModalOpen(true)}
+              onClick={handleClearAll}
               className="border-red-500/30 text-red-300 hover:bg-red-500/10 text-xs"
             >
               <Trash2 className="w-4 h-4 mr-1.5" /> Clear All
@@ -208,7 +202,7 @@ export const NotificationsPage: React.FC = () => {
                 className={`px-3.5 py-1.5 rounded-xl text-xs font-medium whitespace-nowrap transition-all flex items-center gap-1.5 ${
                   isSelected
                     ? 'bg-royal-900 text-white dark:bg-gold-500 dark:text-royal-950 font-semibold shadow-sm'
-                    : 'bg-white dark:bg-royal-900 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-royal-800 border border-gray-200 dark:border-navy-800'
+                    : 'bg-white dark:bg-navy-900 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-navy-800 border border-gray-200 dark:border-navy-800'
                 }`}
               >
                 <span>{cat.label}</span>
@@ -217,7 +211,7 @@ export const NotificationsPage: React.FC = () => {
                     className={`px-1.5 py-0.2 rounded-full text-[10px] font-bold ${
                       isSelected
                         ? 'bg-gold-400 text-royal-950'
-                        : 'bg-red-100 text-red-700 dark:bg-red-600 dark:text-white'
+                        : 'bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-300'
                     }`}
                   >
                     {cat.count}
@@ -272,7 +266,11 @@ export const NotificationsPage: React.FC = () => {
                 if (!item.isRead) handleMarkAsRead(item.id);
                 if (item.actionUrl) navigate(item.actionUrl);
               }}
-              className="p-4 rounded-xl border transition-all cursor-pointer flex items-start justify-between gap-4 bg-gold-50/40 dark:bg-gold-950/10 border-gold-500/30 ring-1 ring-gold-500/20"
+              className={`p-4 rounded-xl border transition-all cursor-pointer flex items-start justify-between gap-4 ${
+                item.isRead
+                  ? 'bg-white dark:bg-navy-900/60 border-gray-200 dark:border-navy-800 opacity-80 hover:opacity-100'
+                  : 'bg-gold-50/40 dark:bg-gold-950/10 border-gold-500/30 ring-1 ring-gold-500/20'
+              }`}
             >
               <div className="flex items-start gap-3.5">
                 <div className="p-2.5 rounded-xl bg-gray-100 dark:bg-navy-800 shrink-0 mt-0.5">
@@ -328,45 +326,6 @@ export const NotificationsPage: React.FC = () => {
           ))}
         </div>
       )}
-
-      {/* Confirmation Modal for Clear All */}
-      <Modal
-        isOpen={clearModalOpen}
-        onClose={() => setClearModalOpen(false)}
-        title="Clear Notifications"
-        subtitle="Activity History Cleanse"
-        size="md"
-        footer={
-          <div className="flex items-center justify-end gap-3 w-full">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => setClearModalOpen(false)}
-              disabled={isClearing}
-            >
-              Cancel
-            </Button>
-            <Button
-              variant="danger"
-              size="sm"
-              onClick={handleClearAll}
-              isLoading={isClearing}
-              icon={<Trash2 className="w-3.5 h-3.5" />}
-            >
-              Confirm Clear All
-            </Button>
-          </div>
-        }
-      >
-        <div className="space-y-3 py-2">
-          <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-            Are you sure you want to permanently clear all notifications from your activity log?
-          </p>
-          <p className="text-[11px] text-slate-500 dark:text-slate-400">
-            This will purge all past transaction alerts, security notices, and promotional bulletins from this device.
-          </p>
-        </div>
-      </Modal>
     </div>
   );
 };

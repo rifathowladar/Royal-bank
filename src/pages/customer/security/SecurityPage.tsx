@@ -12,8 +12,6 @@ import { Card } from '../../../components/ui/Card.tsx';
 import { Button } from '../../../components/ui/Button.tsx';
 import { Input } from '../../../components/ui/Input.tsx';
 import { LoadingState } from '../../../components/ui/LoadingState.tsx';
-import { Modal } from '../../../components/ui/Modal.tsx';
-import { QRCodeView } from '../../../components/common/QRCodeView.tsx';
 import {
   Shield,
   ShieldCheck,
@@ -53,7 +51,6 @@ export const SecurityPage: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const [qrModalOpen, setQrModalOpen] = useState(false);
-  const [logoutModalOpen, setLogoutModalOpen] = useState(false);
 
   // Tab detection: /bank/security, /bank/security/password, /bank/security/pin, /bank/security/2fa, /bank/security/devices, /bank/security/sessions
   const getInitialTab = () => {
@@ -203,11 +200,13 @@ export const SecurityPage: React.FC = () => {
   };
 
   const handleLogoutAllDevices = async () => {
+    if (!window.confirm('Terminate all active sessions on other phones, laptops, and tablets?')) {
+      return;
+    }
     try {
       setIsProcessing(true);
       const currentOnly = await securityService.logoutAllOtherSessions();
       setSessions(currentOnly);
-      setLogoutModalOpen(false);
       success('All other remote devices logged out successfully.');
     } catch (err: any) {
       toastError(err.message || 'Logout failed');
@@ -225,7 +224,7 @@ export const SecurityPage: React.FC = () => {
   return (
     <div className="space-y-6 max-w-7xl mx-auto pb-12">
       {/* Header Banner */}
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-royal-950 via-royal-900 to-slate-950 p-6 md:p-8 text-white shadow-xl border border-gold-500/20">
+      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-royal-950 via-royal-900 to-navy-950 p-6 md:p-8 text-white shadow-xl border border-gold-500/20">
         <div className="absolute top-0 right-0 -mt-10 -mr-10 w-72 h-72 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
         <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div>
@@ -401,7 +400,7 @@ export const SecurityPage: React.FC = () => {
                 {sessions.slice(0, 2).map((s) => (
                   <div
                     key={s.id}
-                    className="p-3.5 rounded-xl border border-gray-100 dark:border-slate-800 bg-gray-50/50 dark:bg-slate-900/40 flex items-center justify-between"
+                    className="p-3.5 rounded-xl border border-gray-100 dark:border-navy-800 bg-gray-50/50 dark:bg-navy-900/40 flex items-center justify-between"
                   >
                     <div>
                       <div className="flex items-center gap-2">
@@ -480,7 +479,7 @@ export const SecurityPage: React.FC = () => {
       {/* Tab: Password */}
       {activeTab === 'password' && (
         <Card className="p-6 md:p-8 max-w-2xl mx-auto">
-          <div className="mb-6 pb-4 border-b border-gray-100 dark:border-slate-800">
+          <div className="mb-6 pb-4 border-b border-gray-100 dark:border-navy-800">
             <h2 className="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
               <Lock className="w-5 h-5 text-royal-600 dark:text-gold-400" />
               Change Master Password
@@ -540,7 +539,7 @@ export const SecurityPage: React.FC = () => {
               </label>
             </div>
 
-            <div className="flex justify-end gap-3 pt-4 border-t border-gray-100 dark:border-slate-800">
+            <div className="flex justify-end gap-3 pt-4 border-t border-gray-100 dark:border-navy-800">
               <Button type="submit" variant="primary" disabled={isProcessing}>
                 {isProcessing ? 'Updating...' : 'Update Password'}
               </Button>
@@ -552,7 +551,7 @@ export const SecurityPage: React.FC = () => {
       {/* Tab: PIN */}
       {activeTab === 'pin' && (
         <Card className="p-6 md:p-8 max-w-2xl mx-auto">
-          <div className="mb-6 pb-4 border-b border-gray-100 dark:border-slate-800">
+          <div className="mb-6 pb-4 border-b border-gray-100 dark:border-navy-800">
             <h2 className="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
               <KeyRound className="w-5 h-5 text-royal-600 dark:text-gold-400" />
               Set / Update 6-Digit Transaction PIN
@@ -604,7 +603,7 @@ export const SecurityPage: React.FC = () => {
               />
             </div>
 
-            <div className="flex justify-end gap-3 pt-4 border-t border-gray-100 dark:border-slate-800">
+            <div className="flex justify-end gap-3 pt-4 border-t border-gray-100 dark:border-navy-800">
               <Button type="submit" variant="primary" disabled={isProcessing}>
                 {isProcessing ? 'Updating...' : 'Save Transaction PIN'}
               </Button>
@@ -616,7 +615,7 @@ export const SecurityPage: React.FC = () => {
       {/* Tab: 2FA */}
       {activeTab === '2fa' && (
         <Card className="p-6 md:p-8 max-w-3xl mx-auto space-y-6">
-          <div className="mb-6 pb-4 border-b border-gray-100 dark:border-slate-800">
+          <div className="mb-6 pb-4 border-b border-gray-100 dark:border-navy-800">
             <h2 className="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
               <Smartphone className="w-5 h-5 text-royal-600 dark:text-gold-400" />
               Two-Factor Authentication (2FA) Methods
@@ -632,7 +631,7 @@ export const SecurityPage: React.FC = () => {
               className={`p-4 rounded-xl border transition-all ${
                 settings.twoFactorMethod === 'authenticator'
                   ? 'border-gold-500 bg-gold-500/5'
-                  : 'border-gray-200 dark:border-slate-800'
+                  : 'border-gray-200 dark:border-navy-800'
               }`}
             >
               <div className="flex items-start justify-between">
@@ -676,7 +675,7 @@ export const SecurityPage: React.FC = () => {
               className={`p-4 rounded-xl border transition-all ${
                 settings.twoFactorMethod === 'sms'
                   ? 'border-gold-500 bg-gold-500/5'
-                  : 'border-gray-200 dark:border-slate-800'
+                  : 'border-gray-200 dark:border-navy-800'
               }`}
             >
               <div className="flex items-start justify-between">
@@ -708,7 +707,7 @@ export const SecurityPage: React.FC = () => {
               className={`p-4 rounded-xl border transition-all ${
                 settings.twoFactorMethod === 'email'
                   ? 'border-gold-500 bg-gold-500/5'
-                  : 'border-gray-200 dark:border-slate-800'
+                  : 'border-gray-200 dark:border-navy-800'
               }`}
             >
               <div className="flex items-start justify-between">
@@ -741,7 +740,7 @@ export const SecurityPage: React.FC = () => {
       {/* Tab: Devices */}
       {activeTab === 'devices' && (
         <Card className="p-6 md:p-8">
-          <div className="mb-6 pb-4 border-b border-gray-100 dark:border-slate-800">
+          <div className="mb-6 pb-4 border-b border-gray-100 dark:border-navy-800">
             <h2 className="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
               <Laptop className="w-5 h-5 text-royal-600 dark:text-gold-400" />
               Trusted Hardware & Biometric Terminals
@@ -755,7 +754,7 @@ export const SecurityPage: React.FC = () => {
             {devices.map((dev) => (
               <div
                 key={dev.id}
-                className="p-4 rounded-xl border border-gray-200 dark:border-slate-800 bg-gray-50/50 dark:bg-slate-900/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+                className="p-4 rounded-xl border border-gray-200 dark:border-navy-800 bg-gray-50/50 dark:bg-navy-900/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
               >
                 <div className="flex items-start gap-3.5">
                   <div className="p-2.5 rounded-xl bg-royal-100 dark:bg-royal-900 text-royal-700 dark:text-gold-400">
@@ -799,7 +798,7 @@ export const SecurityPage: React.FC = () => {
       {activeTab === 'sessions' && (
         <div className="space-y-6">
           <Card className="p-6 md:p-8">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-gray-100 dark:border-slate-800">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-gray-100 dark:border-navy-800">
               <div>
                 <h2 className="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
                   <History className="w-5 h-5 text-royal-600 dark:text-gold-400" />
@@ -813,8 +812,8 @@ export const SecurityPage: React.FC = () => {
               <Button
                 variant="outline"
                 size="sm"
-                onClick={() => setLogoutModalOpen(true)}
-                className="text-xs text-red-500 hover:bg-red-50 dark:hover:bg-red-950/30"
+                onClick={handleLogoutAllDevices}
+                className="text-xs text-red-500 hover:bg-red-50"
               >
                 <LogOut className="w-3.5 h-3.5 mr-1" /> Terminate Other Sessions
               </Button>
@@ -824,7 +823,7 @@ export const SecurityPage: React.FC = () => {
               {sessions.map((sess) => (
                 <div
                   key={sess.id}
-                  className="p-4 rounded-xl border border-gray-200 dark:border-slate-800 bg-gray-50/50 dark:bg-slate-900/40 flex items-center justify-between"
+                  className="p-4 rounded-xl border border-gray-200 dark:border-navy-800 bg-gray-50/50 dark:bg-navy-900/40 flex items-center justify-between"
                 >
                   <div>
                     <div className="flex items-center gap-2">
@@ -867,7 +866,7 @@ export const SecurityPage: React.FC = () => {
 
             <div className="overflow-x-auto">
               <table className="w-full text-xs text-left">
-                <thead className="bg-gray-50 dark:bg-slate-900 text-gray-500 dark:text-gray-400 uppercase tracking-wider font-semibold">
+                <thead className="bg-gray-50 dark:bg-navy-900 text-gray-500 dark:text-gray-400 uppercase tracking-wider font-semibold">
                   <tr>
                     <th className="py-2.5 px-3">Timestamp</th>
                     <th className="py-2.5 px-3">IP Address</th>
@@ -908,7 +907,7 @@ export const SecurityPage: React.FC = () => {
       {/* TOTP Authenticator QR Code Modal */}
       {qrModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-fade-in">
-          <div className="bg-white dark:bg-slate-900 rounded-2xl max-w-md w-full p-6 shadow-2xl border border-gray-200 dark:border-slate-700 text-center">
+          <div className="bg-white dark:bg-navy-900 rounded-2xl max-w-md w-full p-6 shadow-2xl border border-gray-200 dark:border-navy-700 text-center">
             <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">
               Configure Authenticator App
             </h3>
@@ -916,17 +915,16 @@ export const SecurityPage: React.FC = () => {
               Scan this QR code with Google Authenticator, 1Password, or Authy.
             </p>
 
-            {/* QR Code visual - generated completely client-side via local SVG */}
+            {/* QR Code visual */}
             <div className="bg-white p-4 rounded-xl inline-block shadow-md border border-gray-200 mb-4">
-              <QRCodeView
-                value="otpauth://totp/RoyalBank:AlexanderSterling?secret=JBSWY3DPEHPK3PXP&issuer=RoyalBank"
-                size={176}
-                includeLogo={false}
-                className="mx-auto"
+              <img
+                src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=otpauth://totp/RoyalBank:AlexanderSterling?secret=JBSWY3DPEHPK3PXP&issuer=RoyalBank"
+                alt="Authenticator QR Code"
+                className="w-44 h-44 mx-auto"
               />
             </div>
 
-            <div className="bg-gray-50 dark:bg-navy-950 p-2.5 rounded-lg border border-gray-200 dark:border-slate-800 text-xs mb-4">
+            <div className="bg-gray-50 dark:bg-navy-950 p-2.5 rounded-lg border border-gray-200 dark:border-navy-800 text-xs mb-4">
               <span className="text-gray-400 block text-[10px] uppercase">Manual Secret Key:</span>
               <span className="font-mono font-bold text-royal-700 dark:text-gold-400">
                 JBSW Y3DP EHPK 3PXP
@@ -939,45 +937,6 @@ export const SecurityPage: React.FC = () => {
           </div>
         </div>
       )}
-
-      {/* Confirmation Modal for Terminate Other Sessions */}
-      <Modal
-        isOpen={logoutModalOpen}
-        onClose={() => setLogoutModalOpen(false)}
-        title="Terminate Remote Sessions"
-        subtitle="Sovereign Session Revocation"
-        size="md"
-        footer={
-          <div className="flex items-center justify-end gap-3 w-full">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => setLogoutModalOpen(false)}
-              disabled={isProcessing}
-            >
-              Cancel
-            </Button>
-            <Button
-              variant="danger"
-              size="sm"
-              onClick={handleLogoutAllDevices}
-              isLoading={isProcessing}
-              icon={<LogOut className="w-3.5 h-3.5" />}
-            >
-              Confirm Terminate All
-            </Button>
-          </div>
-        }
-      >
-        <div className="space-y-3 py-2">
-          <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-            Are you sure you want to terminate all active sessions on other phones, laptops, and tablets?
-          </p>
-          <p className="text-[11px] text-slate-500 dark:text-slate-400">
-            This will immediately invalidate OAuth tokens and session credentials across all devices except this current browser session.
-          </p>
-        </div>
-      </Modal>
     </div>
   );
 };

@@ -320,7 +320,7 @@ export const KycPage: React.FC = () => {
               </div>
 
               {kycState.reviewerNotes && (
-                <div className="mt-4 p-3.5 rounded-xl bg-royal-50 dark:bg-navy-900/80 border border-royal-100 dark:border-royal-800 text-xs text-royal-900 dark:text-white">
+                <div className="mt-4 p-3.5 rounded-xl bg-royal-50 dark:bg-navy-900/80 border border-royal-100 dark:border-navy-800 text-xs text-royal-900 dark:text-royal-200">
                   <strong className="block font-semibold mb-0.5 text-royal-800 dark:text-gold-300">
                     Compliance Officer Note:
                   </strong>
@@ -329,19 +329,19 @@ export const KycPage: React.FC = () => {
               )}
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6 text-sm">
-                <div className="p-3 rounded-lg bg-gray-50 dark:bg-royal-900/60 border border-gray-100 dark:border-royal-800">
+                <div className="p-3 rounded-lg bg-gray-50 dark:bg-navy-900/60 border border-gray-100 dark:border-navy-800">
                   <span className="text-gray-400 text-xs block">Last Verified Date</span>
                   <span className="font-semibold text-gray-900 dark:text-white">
                     {kycState.lastVerifiedDate ? new Date(kycState.lastVerifiedDate).toLocaleDateString() : 'Pending'}
                   </span>
                 </div>
-                <div className="p-3 rounded-lg bg-gray-50 dark:bg-royal-900/60 border border-gray-100 dark:border-royal-800">
+                <div className="p-3 rounded-lg bg-gray-50 dark:bg-navy-900/60 border border-gray-100 dark:border-navy-800">
                   <span className="text-gray-400 text-xs block">Next Re-Verification Due</span>
                   <span className="font-semibold text-gray-900 dark:text-white">
                     {kycState.expiresAt ? new Date(kycState.expiresAt).toLocaleDateString() : 'N/A'}
                   </span>
                 </div>
-                <div className="p-3 rounded-lg bg-gray-50 dark:bg-royal-900/60 border border-gray-100 dark:border-royal-800">
+                <div className="p-3 rounded-lg bg-gray-50 dark:bg-navy-900/60 border border-gray-100 dark:border-navy-800">
                   <span className="text-gray-400 text-xs block">Verified Documents</span>
                   <span className="font-semibold text-emerald-600 dark:text-emerald-400">
                     {kycState.documents.length} of 4 Registered
@@ -505,7 +505,7 @@ export const KycPage: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Tier 1 */}
-            <div className="p-5 rounded-2xl border border-gray-200 dark:border-royal-800 bg-gray-50/50 dark:bg-royal-900/40">
+            <div className="p-5 rounded-2xl border border-gray-200 dark:border-navy-800 bg-gray-50/50 dark:bg-navy-900/40">
               <span className="text-xs font-bold uppercase text-gray-500 dark:text-gray-400 block mb-1">Tier 1</span>
               <h3 className="text-lg font-bold text-gray-900 dark:text-white">Basic Digital KYC</h3>
               <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 mb-4">Email + Phone + NID validation</p>
@@ -527,7 +527,7 @@ export const KycPage: React.FC = () => {
             </div>
 
             {/* Tier 2 */}
-            <div className="p-5 rounded-2xl border border-gray-200 dark:border-royal-800 bg-gray-50/50 dark:bg-royal-900/40">
+            <div className="p-5 rounded-2xl border border-gray-200 dark:border-navy-800 bg-gray-50/50 dark:bg-navy-900/40">
               <span className="text-xs font-bold uppercase text-royal-600 dark:text-gold-400 block mb-1">Tier 2</span>
               <h3 className="text-lg font-bold text-gray-900 dark:text-white">Enhanced Verification</h3>
               <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 mb-4">NID + Address Proof + Tax ID</p>
@@ -608,7 +608,7 @@ export const KycPage: React.FC = () => {
             {kycState.documents.map((doc) => (
               <div
                 key={doc.id}
-                className="p-4 rounded-xl border border-gray-200 dark:border-royal-800 bg-gray-50/50 dark:bg-royal-900/40 space-y-3"
+                className="p-4 rounded-xl border border-gray-200 dark:border-navy-800 bg-gray-50/50 dark:bg-navy-900/40 space-y-3"
               >
                 <div className="flex items-start justify-between">
                   <div className="flex items-center gap-3">
@@ -627,7 +627,7 @@ export const KycPage: React.FC = () => {
                   </span>
                 </div>
 
-                <div className="pt-2 border-t border-gray-200 dark:border-royal-800 text-xs text-gray-600 dark:text-gray-300 grid grid-cols-2 gap-2">
+                <div className="pt-2 border-t border-gray-200 dark:border-navy-800 text-xs text-gray-600 dark:text-gray-300 grid grid-cols-2 gap-2">
                   <div>
                     <span className="text-gray-400 block text-[10px]">Document Reference:</span>
                     <span className="font-mono font-medium">{doc.documentNumber || 'Verified In-Chip'}</span>
